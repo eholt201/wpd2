@@ -11,7 +11,7 @@ const Strategy = require('passport-local').Strategy;
 const session = require('express-session');
 const flash = require('connect-flash');
 const authUtils = require('./utils/auth.js');
-
+const hbs = require('hbs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -52,7 +52,7 @@ passport.use(new Strategy(
   }
 ));
 
-//makes sure user info is available throughout session.
+//makes sure user info is available throughout session
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });
@@ -66,12 +66,32 @@ passport.deserializeUser((is, done) => {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//registering the session
+app.use(session({
+  secret: 'session secret',
+  resave: false,
+  saveUnitialized: false,
+}));
+
+//boilerplate for express application
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+app.use((req, res, next) => {
+  //tells us if user is logged in or not
+  res.locals.loggedIn = req.isAuthenticated();
+  next();
+})
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

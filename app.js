@@ -52,6 +52,7 @@ passport.use(new Strategy(
   }
 ));
 
+//makes sure user info is available throughout session.
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });

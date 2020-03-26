@@ -14,6 +14,7 @@ const authUtils = require('./utils/auth.js');
 const hbs = require('hbs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
 var app = express();
 // Checks for error first, if no error, returns client Object which allows us to interact with mongodb database
@@ -57,7 +58,7 @@ passport.serializeUser((user, done) => {
   done(null, user._id);
 });
 
-passport.deserializeUser((is, done) => {
+passport.deserializeUser((id, done) => {
   done(null, { id });
 });
 
@@ -68,6 +69,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -77,7 +79,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'session secret',
   resave: false,
-  saveUnitialized: false,
+  saveUninitialized: false,
 }));
 
 //boilerplate for express application
@@ -95,6 +97,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

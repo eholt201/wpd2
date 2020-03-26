@@ -6,6 +6,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    {{#loggedIn}}
+      <p class="text-right">
+        <a href="/auth/logout">Logout</a>
+      </p>
+    {{/loggedIn}}
     {{{body}}}
   </body>
 </html>

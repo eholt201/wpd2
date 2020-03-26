@@ -1,0 +1,22 @@
+{{> messages }}
+{{#if username}}
+<h2>{{ username }}'s Courseworks</h2>
+<table class="table">
+  <tr>
+    <td>Module Name: </td>
+    <td>{{ module_name }}</td>
+  </tr>
+  <tr>
+    <td>Module Code: </td>
+    <td>{{ module_code }}</td>
+  </tr>
+  <tr>
+    <td>Coursework Title: </td>
+    <td>{{ coursework_title }}</td>
+  </tr>
+  <tr>
+    <td>Due Date: </td>
+    <td>{{ due_date }}</td>
+  </tr>
+</table>
+{{/if}}

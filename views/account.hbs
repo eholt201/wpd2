@@ -1,0 +1,24 @@
+<h2>Add a Coursework</h2>
+<form action="/users" method="POST">
+  <div class="form-group">
+    <label for="name">Module Name:</label>
+    <input type="text" class="form-control" name="module_name" id="module_name" value="{{ module_name }}">
+  </div>
+  <div class="form-group">
+    <label for="name">Module Code:</label>
+    <input type="text" class="form-control" name="module_code" id="module_code" value="{{ module_code }}">
+  </div>
+  <div class="form-group">
+    <label for="name">Coursework Title:</label>
+    <input type="text" class="form-control" name="coursework_title" id="coursework_title" value="{{ coursework_title }}">
+  </div>
+  <div class="form-group">
+    <label for="name">Due Date:</label>
+    <input type="text" class="form-control" name="due_date" id="due_date" value="{{ due_date }}">
+  </div>
+  <button class="btn btn-primary">Add</button>
+</form>
+
+{{> messages }}
+
+<p><a href="/users/{{username}}" target="_blank">View Courseworks</a></p>

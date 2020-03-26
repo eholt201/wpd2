@@ -25,9 +25,12 @@ router.post('/register', (req, res, next) => {
   const payload = {
     username: registrationParams.username,
     password: authUtils.hashPassword(registrationParams.password),
+    //add empty coursework array so objects can be added
+    coursework: [],
   };
 
   users.insertOne(payload, (err) => {
+    //cant get flash messages working for this bit
     if (err) {
       req.flash('error', 'User Already Exists');
     } else {

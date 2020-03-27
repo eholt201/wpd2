@@ -9,7 +9,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.post('/login', passport.authenticate('local',
- { failureReditect: '/auth/login', failureFlash: "Wrong Username or Password" }),
+ { failureRedirect: '/auth/login', failureFlash: "Wrong Username or Password" }),
   (req, res, next) => {
     res.redirect('/users');
 });

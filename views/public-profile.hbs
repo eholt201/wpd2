@@ -1,22 +1,51 @@
 {{> messages }}
 {{#if username}}
-<h2>{{ username }}'s Courseworks</h2>
-<table class="table">
-  <tr>
-    <td>Module Name: </td>
-    <td>{{ module_name }}</td>
-  </tr>
-  <tr>
-    <td>Module Code: </td>
-    <td>{{ module_code }}</td>
-  </tr>
-  <tr>
-    <td>Coursework Title: </td>
-    <td>{{ coursework_title }}</td>
-  </tr>
-  <tr>
-    <td>Due Date: </td>
-    <td>{{ due_date }}</td>
-  </tr>
-</table>
+  <h2>{{ username }}'s Courseworks</h2>
+<div class="col-sm-12">
+  <div class="panel panel-default">
+    <table class="table table-responsive table-hover">
+      <thead>
+        <th>Module Name</th>
+        <th>Module Code</th>
+        <th>Coursework Title</th>
+        <th>Due Date</th>
+        <th>Select</th>
+        <th></th>
+      </thead>
+      {{#coursework}}
+      <tbody>
+        <tr data-toggle="collapse" id="table{{@index}}" data-target=".table{{@index}}">
+          <td>{{module_name}}</td>
+          <td>{{module_code}}</td>
+          <td>{{coursework_title}}</td>
+          <td>{{due_date}}</td>
+          <td><button class="btn btn-default btn-sm">View More</button></td>
+        </tr>
+        <tr class="collapse table{{@index}}">
+          <td colspan="999">
+            <div>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Milestone Date</th>
+                    <th>Milestone Description</th>
+                  </tr>
+                </thead>
+                {{#milestones}}
+                <tbody>
+                  <tr>
+                    <td>{{milestone_date}}</td>
+                    <td>{{milestone_description}}</td>
+                  </tr>
+                </tbody>
+                {{/milestones}}
+              </table>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      {{/coursework}}
+    </table>
+  </div>
+</div>
 {{/if}}

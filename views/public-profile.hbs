@@ -1,8 +1,9 @@
 {{> messages }}
 {{#if username}}
-  <h2>{{ username }}'s Courseworks</h2>
-<div class="col-sm-12">
+<div class="row justify-content-center">
+<div class="col-auto">
   <div class="panel panel-default">
+    <h2>{{ username }}'s Courseworks{{#if username}}<a href="/users" class="btn btn-secondary float-right">Add Coursework</a>{{/if}}</h2>
     <table class="table table-responsive table-hover">
       <thead>
         <th>Module Name</th>
@@ -47,5 +48,6 @@
       {{/coursework}}
     </table>
   </div>
+</div>
 </div>
 {{/if}}

@@ -11,7 +11,7 @@ router.get('/login', (req, res, next) => {
 router.post('/login', passport.authenticate('local',
  { failureRedirect: '/auth/login', failureFlash: "Wrong Username or Password" }),
   (req, res, next) => {
-    res.redirect('/users');
+    res.redirect('/users/' + req.body.username);
 });
 
 router.get('/register', (req, res, next) => {

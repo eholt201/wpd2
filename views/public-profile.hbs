@@ -11,6 +11,7 @@
         <th>Coursework Title</th>
         <th>Due Date</th>
         <th>Milestones</th>
+        <th>Share Coursework</th>
         <th></th>
       </thead>
       {{#coursework}}
@@ -21,6 +22,7 @@
           <td>{{coursework_title}}</td>
           <td>{{due_date}}</td>
           <td><button class="btn btn-default btn-sm">View</button></td>
+          <td><a href="/users/{{../username}}/{{coursework_title}}">Share</a></td>
         </tr>
         <tr class="collapse table{{@index}}">
           <td colspan="999">

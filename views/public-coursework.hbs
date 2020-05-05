@@ -1,0 +1,25 @@
+{{> messages }}
+<div class="row justify-content-center">
+<div class="col-auto">
+  <div class="panel panel-default">
+    <h2>{{ username }}'s Coursework</h2>
+    <table class="table table-responsive table-hover">
+      <thead>
+        <th>Module Name</th>
+        <th>Module Code</th>
+        <th>Coursework Title</th>
+        <th>Due Date</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr data-toggle="collapse" id="table{{@index}}" data-target=".table{{@index}}">
+          <td>{{module_name}}</td>
+          <td>{{module_code}}</td>
+          <td>{{coursework_title}}</td>
+          <td>{{due_date}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

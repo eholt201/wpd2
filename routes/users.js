@@ -66,4 +66,16 @@ router.post('/', (req, res, next) => {
   });
 })
 
+router.get('/:username/:coursework_title', (req, res) => {
+  const users = req.app.locals.users;
+  const username = req.params.username;
+  const coursework = req.params.coursework;
+  const coursework_title = req.params.coursework_title;
+
+  let test = users.find({ coursework: { $elemMatch: { coursework_title: coursework_title }}})
+  console.log(test)
+
+  res.render('public-coursework', { username, coursework, test });
+});
+
 module.exports = router;

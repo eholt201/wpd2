@@ -3,6 +3,7 @@
 <div class="col-auto">
   <div class="panel panel-default">
     <h2>{{ username }}'s Coursework</h2>
+    <h2>{{module_name}}</h2>
     <table class="table table-responsive table-hover">
       <thead>
         <th>Module Name</th>
@@ -11,6 +12,7 @@
         <th>Due Date</th>
         <th></th>
       </thead>
+      {{#result}}
       <tbody>
         <tr data-toggle="collapse" id="table{{@index}}" data-target=".table{{@index}}">
           <td>{{module_name}}</td>
@@ -19,6 +21,7 @@
           <td>{{due_date}}</td>
         </tr>
       </tbody>
+      {{/result}}
     </table>
   </div>
 </div>

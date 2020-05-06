@@ -34,8 +34,8 @@ router.get('/:username', (req, res, next) => {
     }
     console.log(results.coursework[0].module_name);
     const coursework = results.coursework;
-    console.log(coursework)
-    console.log(coursework[0].milestones)
+    //console.log(coursework)
+    //console.log(coursework[0].milestones)
     res.render('public-profile', { ...results, username, coursework});
   });
 });
@@ -70,12 +70,46 @@ router.get('/:username/:coursework_title', (req, res) => {
   const users = req.app.locals.users;
   const username = req.params.username;
   const coursework = req.params.coursework;
+  //console.log(coursework)
   const coursework_title = req.params.coursework_title;
 
-  let test = users.find({ coursework: { $elemMatch: { coursework_title: coursework_title }}})
-  console.log(test)
+  //let test = users.find({ coursework: { $elemMatch: { coursework_title: coursework_title }}})
+  //console.log(test)
+  //users.find(
+  //  {"coursework.coursework_title": coursework_title},
+  //  {projection: {_id: 0, "coursework.coursework_title": 1, "coursework.module_code": 1}})
+  //  .toArray()
+  //  .then((result) => {
+  //    console.log(result[0]);
+  //  });
 
-  res.render('public-coursework', { username, coursework, test });
+  users.aggregate([
+    {$match: {'coursework.coursework_title': coursework_title}},
+    {$project: {
+      coursework: {$filter: {
+        input: '$coursework',
+        as: 'coursework',
+        cond: {$eq: ['$$coursework.coursework_title', coursework_title]}
+      }},
+      _id: 0
+    }}
+  ])
+  .toArray()
+  .then((results) => {
+    let result = results[0].coursework[0]
+    res.render('public-coursework', { username, result });
+  })
+  //console.log(test)
+
+  //let test = users.find(
+  //  { coursework: { $elemMatch: { coursework_title: coursework_title }}},
+  //  { projection: { "coursework.module_name": 1, module_code: 1, coursework_title: 1, due_date: 1 }})
+  //  .toArray()
+  //  .then((result) => {
+  //    console.log(result[0]);
+  //  });
+  //console.log(test)
+
 });
 
 module.exports = router;

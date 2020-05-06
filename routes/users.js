@@ -70,18 +70,8 @@ router.get('/:username/:coursework_title', (req, res) => {
   const users = req.app.locals.users;
   const username = req.params.username;
   const coursework = req.params.coursework;
-  //console.log(coursework)
   const coursework_title = req.params.coursework_title;
 
-  //let test = users.find({ coursework: { $elemMatch: { coursework_title: coursework_title }}})
-  //console.log(test)
-  //users.find(
-  //  {"coursework.coursework_title": coursework_title},
-  //  {projection: {_id: 0, "coursework.coursework_title": 1, "coursework.module_code": 1}})
-  //  .toArray()
-  //  .then((result) => {
-  //    console.log(result[0]);
-  //  });
 
   users.aggregate([
     {$match: {'coursework.coursework_title': coursework_title}},
@@ -99,17 +89,22 @@ router.get('/:username/:coursework_title', (req, res) => {
     let result = results[0].coursework[0]
     res.render('public-coursework', { username, result });
   })
-  //console.log(test)
+});
 
-  //let test = users.find(
-  //  { coursework: { $elemMatch: { coursework_title: coursework_title }}},
-  //  { projection: { "coursework.module_name": 1, module_code: 1, coursework_title: 1, due_date: 1 }})
-  //  .toArray()
-  //  .then((result) => {
-  //    console.log(result[0]);
-  //  });
-  //console.log(test)
+router.get('/delete/:username/:coursework_title', (req, res) => {
+  const users = req.app.locals.users;
+  const username = req.params.username;
+  const coursework_title = req.params.coursework_title;
+  console.log("hello")
 
+  users.updateOne({username: username}, {
+    "$pull": {
+      "coursework": {
+        "coursework_title": coursework_title
+      }
+    }
+  })
+  res.redirect('/users/'+username);
 });
 
 module.exports = router;

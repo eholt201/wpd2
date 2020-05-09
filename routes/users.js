@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
       throw err;
     }
 
-    res.render('account', { ...results });
+    res.render('add', { ...results });
   })
 });
 

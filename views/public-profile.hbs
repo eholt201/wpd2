@@ -11,7 +11,6 @@
         <th>Coursework Title</th>
         <th>Due Date</th>
         <th>Milestones</th>
-        <th>Share Coursework</th>
         <th></th>
       </thead>
       {{#coursework}}
@@ -22,8 +21,11 @@
           <td>{{coursework_title}}</td>
           <td>{{due_date}}</td>
           <td><button class="btn btn-default btn-sm">View</button></td>
-          <td><a class="btn btn-default btn-sm" href="/users/{{../username}}/{{coursework_title}}" target="_blank">Share</a></td>
-          <td><a href="/users/delete/{{../username}}/{{coursework_title}}">Delete</a></td>
+          <td>
+            <a href="/users/delete/{{../username}}/{{coursework_title}}"><i class="fa fa-pencil fa-lg"></i></a>
+            <a href="/users/{{../username}}/{{coursework_title}}" target="_blank"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i></a>
+            <a href="/users/delete/{{../username}}/{{coursework_title}}"><i class="fa fa-trash fa-lg"></i></a>
+          </td>
         </tr>
         <tr class="collapse table{{@index}}">
           <td colspan="999">

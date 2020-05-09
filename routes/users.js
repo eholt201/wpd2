@@ -32,7 +32,7 @@ router.get('/:username', (req, res, next) => {
     if (err || !results) {
       res.render('public-profile', { messages: { error: ['User not found']}});
     }
-    console.log(results.coursework[0].module_name);
+    //console.log(results.coursework[0].module_name);
     const coursework = results.coursework;
     //console.log(coursework)
     //console.log(coursework[0].milestones)

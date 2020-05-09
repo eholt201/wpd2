@@ -107,4 +107,51 @@ router.get('/delete/:username/:coursework_title', (req, res) => {
   res.redirect('/users/'+username);
 });
 
+router.get('/:username/edit/:coursework_title', (req, res) => {
+  const username = req.params.username;
+  const coursework_title = req.params.coursework_title;
+  const users = req.app.locals.users;
+
+  users.aggregate([
+    {$match: {'coursework.coursework_title': coursework_title}},
+    {$project: {
+      coursework: {$filter: {
+        input: '$coursework',
+        as: 'coursework',
+        cond: {$eq: ['$$coursework.coursework_title', coursework_title]}
+      }},
+      _id: 0
+    }}
+  ])
+  .toArray()
+  .then((results) => {
+    let result = results[0].coursework[0]
+    const _id = ObjectID(req.session.passport.user);
+
+    res.render('edit', {result, _id, username})
+  })
+})
+
+router.post('/edit', (req, res) => {
+
+  const users = req.app.locals.users;
+  const { module_name, module_code, coursework_title, due_date } = req.body;
+  const coursework = req.body;
+  const _id = ObjectID(req.session.passport.user);
+
+  users.find(_id)
+    .toArray()
+    .then((user) => {
+      let username = user[0].username;
+      console.log(username)
+
+    users.updateOne(
+      { "coursework.coursework_title": coursework_title },
+      { $set: {"coursework.$.module_name": module_name, "coursework.$.module_code": module_code, "coursework.$.coursework_title": coursework_title, "coursework.$.due_date": due_date}})
+      .then(result => {
+        res.redirect('/users/'+username)
+      });
+    })
+  })
+
 module.exports = router;

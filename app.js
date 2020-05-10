@@ -28,18 +28,18 @@ MongoClient.connect(uri, function(err, client) {
    const users = db.collection('users');
    app.locals.users = users;
 
-   //client.close();
+   client.close();
 });
 
 //MongoClient.connect('mongodb://localhost', (err, client) => {
-//  if (err) {
-//    throw err;
-//  }
+  //if (err) {
+    //throw err;
+  //}
 
-//  //creates database and collection
-//  const db = client.db('user-profiles');
-//  const users = db.collection('users');
-//  app.locals.users = users;
+  //creates database and collection
+  //const db = client.db('user-profiles');
+  //const users = db.collection('users');
+  //app.locals.users = users;
 //});
 
 //login functionality

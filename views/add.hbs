@@ -1,23 +1,52 @@
-<h2>Add a Coursework</h2>
+<h2><b>Add Coursework</b></h2>
 <form action="/users" method="POST">
+
+  <br>
+
+  <br>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Module Name:</label>
-    <input type="text" class="form-control" name="module_name" id="module_name" value="{{ module_name }}">
+    <label for="name"><b>Module Name:</b></label>
+    <input type="text" class="form-control" name="module_name" id="module_name" value="{{ module_name }}" maxlength="20" placeholder="Module Name..." required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Module Code:</label>
-    <input type="text" class="form-control" name="module_code" id="module_code" value="{{ module_code }}">
+    <label for="name"><b>Module Code:</b></label>
+    <input type="text" class="form-control" name="module_code" id="module_code" value="{{ module_code }}" maxlength="10" placeholder="Module Code..." required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Coursework Title:</label>
-    <input type="text" class="form-control" name="coursework_title" id="coursework_title" value="{{ coursework_title }}">
+    <label for="name"><b>Coursework Title:</b></label>
+    <input type="text" class="form-control" name="coursework_title" id="coursework_title" value="{{ coursework_title }}" maxlength="20" placeholder="Coursework Title..." required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Due Date:</label>
-    <input type="text" class="form-control" name="due_date" id="due_date" value="{{ due_date }}">
+    <label for="name"><b>Due Date:</b></label>
+    <input type="date" class="form-control" name="due_date" id="due_date" value="{{ due_date }}" placeholder="Due Date..." maxlength="10" required>
   </div>
-  <button class="btn btn-primary">Add</button>
+
+  <br>
+
+  <br>
+
+  <br>
+
+  <button class="btn btn-primary"><b>Add</b></button>
+
 </form>
 
 {{> messages }}
-<p><a href="/users/{{username}}" class="btn btn-secondary">View Courseworks</a></p>
+
+<br>
+
+<br>
+
+<p><a href="/users/{{username}}" class="btn btn-secondary"><b>View Courseworks</b></a></p>

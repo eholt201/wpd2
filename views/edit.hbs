@@ -1,23 +1,53 @@
-<h2>Modify Coursework</h2>
+<h2><b>Modify Coursework</b></h2>
+
 <form action="/users/edit" method="POST">
+
+<br>
+
+<br>
+
+<br>
+
   <div class="form-group">
-    <label for="name">Module Name:</label>
-    <input type="text" class="form-control" name="module_name" id="module_name" value="{{ result.module_name }}" placeholder="{{ result.module_name }}">
+    <label for="name"><b>Module Name:</b></label>
+    <input type="text" class="form-control" name="module_name" id="module_name" value="{{ result.module_name }}" placeholder="{{ result.module_name }}" maxlength="20" required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Module Code:</label>
-    <input type="text" class="form-control" name="module_code" id="module_code" value="{{ result.module_code }}" placeholder="{{ result.module_code }}">
+    <label for="name"><b>Module Code:</b></label>
+    <input type="text" class="form-control" name="module_code" id="module_code" value="{{ result.module_code }}" placeholder="{{ result.module_code }}" maxlength = "10" required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Coursework Title:</label>
-    <input type="text" class="form-control" name="coursework_title" id="coursework_title" value="{{ result.coursework_title }}" placeholder="{{ result.coursework_title }}" readonly>
+    <label for="name"><b>Coursework Title:</b></label>
+    <input type="text" class="form-control" name="coursework_title" id="coursework_title" value="{{ result.coursework_title }}" placeholder="{{ result.coursework_title }}" maxlength="20" readonly required>
   </div>
+
+  <br>
+
   <div class="form-group">
-    <label for="name">Due Date:</label>
-    <input type="text" class="form-control" name="due_date" id="due_date" value="{{ result.due_date }}" placeholder="{{ result.due_date }}">
+    <label for="name"><b>Due Date:</b></label>
+    <input type="date" class="form-control" name="due_date" id="due_date" value="{{ result.due_date }}" placeholder="{{ result.due_date }}" maxlength = "10" required>
   </div>
-  <button class="btn btn-primary">Submit</button>
+
+  <br>
+
+  <br>
+
+  <br>
+
+  <button class="btn btn-primary"><b>Submit</b></button>
+
 </form>
 
+<br>
+
+<br>
+
 {{> messages }}
-<p><a href="/users/{{username}}" class="btn btn-secondary">View Courseworks</a></p>
+
+<p><a href="/users/{{username}}" class="btn btn-secondary"><b>View Courseworks</b></a></p>

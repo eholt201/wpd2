@@ -3,7 +3,10 @@
 <div class="row justify-content-center">
 <div class="col-auto">
   <div class="panel panel-default">
-    <h2>{{ username }}'s Courseworks{{#if username}}<a href="/users" class="btn btn-secondary float-right">Add Coursework</a>{{/if}}</h2>
+    <h2><b>{{ username }}'s Courseworks</b>{{#if username}}<a href="/users" class="btn btn-secondary float-right">Add Coursework</a>{{/if}}</h2>
+    <br>
+    <br>
+    <br>
     <table class="table table-responsive table-hover">
       <thead>
         <th>Module Name</th>
@@ -20,7 +23,7 @@
           <td>{{module_code}}</td>
           <td>{{coursework_title}}</td>
           <td>{{due_date}}</td>
-          <td><button class="btn btn-default btn-sm">View</button></td>
+          <td><button class="btn btn-default btn-sm"><b>View</b></button></td>
           <td>
             <a href="/users/{{../username}}/edit/{{coursework_title}}"><i class="fa fa-pencil fa-lg"></i></a>
             <a href="/users/{{../username}}/{{coursework_title}}" target="_blank"><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i></a>

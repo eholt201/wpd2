@@ -18,16 +18,29 @@ const authRouter = require('./routes/auth');
 
 var app = express();
 // Checks for error first, if no error, returns client Object which allows us to interact with mongodb database
-MongoClient.connect('mongodb://localhost', (err, client) => {
-  if (err) {
-    throw err;
-  }
+const uri = "mongodb+srv://test:test1234@cluster0-mvxbf.mongodb.net/test?retryWrites=true&w=majority"
+MongoClient.connect(uri, function(err, client) {
+   if(err) {
+        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+   }
+   console.log('Successfuly connected to Mongo Atlas...');
+   const db = client.db('user-profiles');
+   const users = db.collection('users');
+   app.locals.users = users;
 
-  //creates database and collection
-  const db = client.db('user-profiles');
-  const users = db.collection('users');
-  app.locals.users = users;
+   //client.close();
 });
+
+//MongoClient.connect('mongodb://localhost', (err, client) => {
+//  if (err) {
+//    throw err;
+//  }
+
+//  //creates database and collection
+//  const db = client.db('user-profiles');
+//  const users = db.collection('users');
+//  app.locals.users = users;
+//});
 
 //login functionality
 passport.use(new Strategy(

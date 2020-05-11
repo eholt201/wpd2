@@ -28,7 +28,7 @@ MongoClient.connect(uri, function(err, client) {
    const users = db.collection('users');
    app.locals.users = users;
 
-   client.close();
+   //client.close();
 });
 
 //MongoClient.connect('mongodb://localhost', (err, client) => {
